@@ -6,8 +6,11 @@ export default function Slide({ src, alt }) {
 }
 
 const IMG = styled.img`
+  @media only screen and (max-width: 1200px) {
+    height: 183px;
+    min-width: 100%;
+  }
+  width: 100%;
   margin: 0 10px;
   border-radius: 5px;
-  height: 300px;
-  width: 100%;
 `;

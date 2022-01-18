@@ -1,14 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Slide from "./Slide";
 
 export default function Carousel() {
   const TotalSlides = 9;
-  const [currentSlide, setCurrentSlide] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(4);
   const slideRef = useRef(null);
 
   const NextSlide = () => {
     if (currentSlide >= TotalSlides) {
+      slideRef.current.style.transition = `none`;
+      slideRef.current.style.transform = `translateX(0)`;
       setCurrentSlide(1);
     } else {
       setCurrentSlide(currentSlide + 1);
@@ -17,27 +19,32 @@ export default function Carousel() {
 
   const PrevSlide = () => {
     if (currentSlide === 1) {
-      setCurrentSlide(TotalSlides);
+      slideRef.current.style.transition = `none`;
+      slideRef.current.style.transform = `translateX(0)`;
+      setCurrentSlide(9);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
   };
 
   useEffect(() => {
-    slideRef.current.style.transition = "all 0.5 ease-in-out";
+    slideRef.current.style.transition = "transform .4s ease-in-out";
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
   }, [currentSlide]);
 
   return (
-    <Container>
-      <SlideContainer ref={slideRef}>
-        {ImgData.map((item) => {
-          return <Slide src={item.src} alt={item.alt} />;
-        })}
-      </SlideContainer>
+    <>
+      <Container>
+        {/* {currentSlide} */}
+        <SlideContainer ref={slideRef}>
+          {ImgData.map((item) => {
+            return <Slide src={item.src} alt={item.alt} />;
+          })}
+        </SlideContainer>
+      </Container>
       <BtnL onClick={PrevSlide}>&#60;</BtnL>
       <BtnR onClick={NextSlide}>&#62;</BtnR>
-    </Container>
+    </>
   );
 }
 
@@ -49,16 +56,19 @@ const Container = styled.div`
 `;
 
 const SlideContainer = styled.div`
+  @media only screen and (max-width: 1200px) {
+    margin-left: -30px;
+  }
   display: flex;
   margin: 0 auto;
   width: 1080px;
   /* background-color: black; */
 `;
-
-const BtnL = styled.div`
+const Btn = css`
+  /* @media only screen and (max-width: 1200px) {
+    display: none;
+  } */
   position: absolute;
-  top: 200px;
-  left: 120px;
   height: 60px;
   width: 30px;
   padding-top: 17px;
@@ -70,9 +80,16 @@ const BtnL = styled.div`
   cursor: pointer;
 `;
 
-const BtnR = styled(BtnL.withComponent("div"))`
-  left: 1285px;
-  z-index: 0;
+const BtnL = styled.div`
+  ${Btn}
+  top:200px;
+  left: 8%;
+`;
+
+const BtnR = styled.div`
+  ${Btn}
+  top: 200px;
+  left: 90%;
 `;
 
 const ImgData = [

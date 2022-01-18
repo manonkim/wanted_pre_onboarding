@@ -2,15 +2,6 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 export default function Nav() {
-  const category = [
-    "채용",
-    "이벤트",
-    "직군별 연봉",
-    "이력서",
-    "커뮤니티",
-    "프리랜서",
-    "AI 합격예측",
-  ];
   return (
     <NavBar>
       <MainBar>
@@ -18,24 +9,30 @@ export default function Nav() {
           <MenuImg />
           <LogoImg />
         </LogoWrap>
-        <MenuWrap>
-          {category.map((a) => {
-            return <Menu>{a}</Menu>;
-          })}
-        </MenuWrap>
-        <AsideMenuWrap>
-          <Search />
-          <Alert />
-          <Profile />
-          <SideBar>|</SideBar>
-          <Dashboard>기업 서비스</Dashboard>
-        </AsideMenuWrap>
+        <Wrap>
+          <MenuWrap>
+            {category.map((a) => {
+              return <Menu>{a}</Menu>;
+            })}
+          </MenuWrap>
+          <AsideMenuWrap>
+            <Search />
+            <Alert />
+
+            <Profile />
+            <SideBar>|</SideBar>
+            <Dashboard>기업 서비스</Dashboard>
+          </AsideMenuWrap>
+        </Wrap>
       </MainBar>
     </NavBar>
   );
 }
 
 const NavBar = styled.div`
+  @media only screen and (max-width: 990px) {
+    height: 110px;
+  }
   position: fixed;
   top: 0;
   width: 100%;
@@ -46,6 +43,13 @@ const NavBar = styled.div`
 `;
 
 const MainBar = styled.div`
+  @media only screen and (max-width: 1200px) {
+    width: 90%;
+  }
+  @media only screen and (max-width: 990px) {
+    flex-direction: column;
+    display: block;
+  }
   display: flex;
   justify-content: space-between;
   width: 1060px;
@@ -80,6 +84,10 @@ const LogoImg = styled.img.attrs({
 `;
 
 const MenuWrap = styled.div`
+  @media only screen and (max-width: 990px) {
+    margin-left: 0;
+  }
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,46 +100,61 @@ const Menu = styled.a`
 `;
 
 const AsideMenuWrap = styled.div`
-  width: 245px;
+  @media only screen and (max-width: 1200px) {
+    width: 200px;
+  }
+  @media only screen and (max-width: 990px) {
+    width: 99px;
+    margin-right: 0px;
+  }
+  width: 235px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
-
-const btn = css`
-  width: 17px;
-  height: 17px;
-  cursor: pointer;
+  /* background-color: red; */
 `;
 
 const Search = styled.img.attrs({
   src: "/images/search.png",
   alt: "search",
 })`
-  ${btn}
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
 `;
 
 const Alert = styled.img.attrs({
   src: "/images/alert.png",
   alt: "alert",
 })`
-  ${btn}
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
 `;
 
 const Profile = styled.img.attrs({
   src: "/images/profile.png",
   alt: "alert",
 })`
+  @media only screen and (max-width: 990px) {
+    src: "/images/dot.png";
+  }
   width: 36px;
   cursor: pointer;
 `;
 
 const SideBar = styled.div`
+  @media only screen and (max-width: 990px) {
+    display: none;
+  }
   color: #e1e2e3;
   font-size: 13px;
 `;
 
 const Dashboard = styled.a`
+  @media only screen and (max-width: 990px) {
+    display: none;
+  }
   padding: 0 10px;
   height: 30px;
   width: 81px;
@@ -142,3 +165,22 @@ const Dashboard = styled.a`
   color: #666666;
   cursor: pointer;
 `;
+
+const Wrap = styled.div`
+  @media only screen and (max-width: 990px) {
+    height: 60px;
+  }
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const category = [
+  "채용",
+  "이벤트",
+  "직군별 연봉",
+  "이력서",
+  "커뮤니티",
+  "프리랜서",
+  "AI 합격예측",
+];
