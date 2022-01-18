@@ -4,71 +4,93 @@ import Slide from "./Slide";
 
 export default function Carousel() {
   const TotalSlides = 9;
-  const [currentSlide, setCurrentSlide] = useState(4);
+  const [currentSlide, setCurrentSlide] = useState(7);
+  const [animationOnGoing, setAnimationOnGoing] = useState(false);
   const slideRef = useRef(null);
+  const Refstyle = slideRef.current;
 
   const NextSlide = () => {
+    if (animationOnGoing) return;
     if (currentSlide >= TotalSlides) {
-      slideRef.current.style.transition = `none`;
-      slideRef.current.style.transform = `translateX(0)`;
+      Refstyle.style.transition = `none`;
+      Refstyle.style.transform = `translateX(0)`;
       setCurrentSlide(1);
     } else {
       setCurrentSlide(currentSlide + 1);
     }
+    setAnimationOnGoing(true);
   };
 
   const PrevSlide = () => {
+    if (animationOnGoing) return;
     if (currentSlide === 1) {
-      slideRef.current.style.transition = `none`;
-      slideRef.current.style.transform = `translateX(0)`;
+      Refstyle.style.transition = `none`;
+      Refstyle.style.transform = `translateX(-1000%)`;
       setCurrentSlide(9);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
+    setAnimationOnGoing(true);
   };
 
   useEffect(() => {
-    slideRef.current.style.transition = "transform .4s ease-in-out";
+    setTimeout(() => {
+      setAnimationOnGoing(false);
+    }, 1300);
+  }, [animationOnGoing]);
+
+  useEffect(() => {
+    slideRef.current.style.transition = "transform .3s ease-in-out";
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
   }, [currentSlide]);
 
   return (
-    <>
+    <Main>
       <Container>
-        {/* {currentSlide} */}
         <SlideContainer ref={slideRef}>
           {ImgData.map((item) => {
-            return <Slide src={item.src} alt={item.alt} />;
+            return <Slide src={item.src} alt={item.alt} id={item.id} />;
           })}
         </SlideContainer>
+        <BtnL onClick={PrevSlide}>&#60;</BtnL>
+        <BtnR onClick={NextSlide}>&#62;</BtnR>
       </Container>
-      <BtnL onClick={PrevSlide}>&#60;</BtnL>
-      <BtnR onClick={NextSlide}>&#62;</BtnR>
-    </>
+    </Main>
   );
 }
 
-const Container = styled.div`
-  margin: 75px auto;
+const Main = styled.div`
+  margin: 70px auto;
   width: 100%;
-  /* overflow: hidden; */
-  /* background-color: red; */
+  overflow: hidden;
+  position: relative;
+`;
+
+const Container = styled.div`
+  @media only screen and (max-width: 1200px) {
+    height: 183px;
+  }
+  @media only screen and (max-width: 990px) {
+    margin-top: 60px;
+    height: 183px;
+    overflow: hidden;
+  }
+  width: 1080px;
+  height: 300px;
+  margin: 0 auto;
+  position: relative;
 `;
 
 const SlideContainer = styled.div`
-  @media only screen and (max-width: 1200px) {
-    margin-left: -30px;
-  }
   display: flex;
-  margin: 0 auto;
-  width: 1080px;
-  /* background-color: black; */
 `;
+
 const Btn = css`
-  /* @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1200px) {
     display: none;
-  } */
+  }
   position: absolute;
+  top: 120px;
   height: 60px;
   width: 30px;
   padding-top: 17px;
@@ -78,18 +100,17 @@ const Btn = css`
   color: #555555;
   opacity: 60%;
   cursor: pointer;
+  z-index: 200;
 `;
 
 const BtnL = styled.div`
   ${Btn}
-  top:200px;
-  left: 8%;
+  left : -5%
 `;
 
 const BtnR = styled.div`
   ${Btn}
-  top: 200px;
-  left: 90%;
+  right: -5%;
 `;
 
 const ImgData = [

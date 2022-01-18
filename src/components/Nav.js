@@ -11,14 +11,16 @@ export default function Nav() {
         </LogoWrap>
         <Wrap>
           <MenuWrap>
-            {category.map((a) => {
-              return <Menu>{a}</Menu>;
+            {category.map((a, id) => {
+              return <Menu key={id}>{category[id].category}</Menu>;
+            })}
+            {category2.map((a, id) => {
+              return <Menu2 key={id}>{category2[id].category}</Menu2>;
             })}
           </MenuWrap>
           <AsideMenuWrap>
             <Search />
             <Alert />
-
             <Profile />
             <SideBar>|</SideBar>
             <Dashboard>기업 서비스</Dashboard>
@@ -84,19 +86,43 @@ const LogoImg = styled.img.attrs({
 `;
 
 const MenuWrap = styled.div`
-  @media only screen and (max-width: 990px) {
-    margin-left: 0;
-  }
+  width: 500px;
+  height: 50px;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 500px;
+  @media only screen and (max-width: 990px) {
+    margin-left: 0;
+    width: 450px;
+  }
 `;
 
 const Menu = styled.a`
-  font-size: 14px;
+  margin: auto 0;
+  padding: 0 10px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 13px;
   cursor: pointer;
+  :hover {
+    border-bottom: 2px solid lightgray;
+  }
+  @media only screen and (max-width: 990px) {
+    :hover {
+      border-bottom: none;
+    }
+  }
+  @media only screen and (min-width: 767px) {
+    display: none;
+  }
+`;
+
+const Menu2 = styled.a`
+  @media (min-width: 767px) {
+    display: none;
+  }
+  background-color: red;
 `;
 
 const AsideMenuWrap = styled.div`
@@ -111,7 +137,6 @@ const AsideMenuWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background-color: red; */
 `;
 
 const Search = styled.img.attrs({
@@ -176,11 +201,17 @@ const Wrap = styled.div`
 `;
 
 const category = [
-  "채용",
-  "이벤트",
-  "직군별 연봉",
-  "이력서",
-  "커뮤니티",
-  "프리랜서",
-  "AI 합격예측",
+  { id: 1, category: "채용" },
+  { id: 2, category: "이벤트" },
+  { id: 3, category: "직군별 연봉" },
+  { id: 4, category: "이력서" },
+  { id: 5, category: "커뮤니티" },
+  { id: 6, category: "프리랜서" },
+  { id: 7, category: "AI 합격예측" },
+];
+
+const category2 = [
+  { id: 1, category: "홈" },
+  { id: 2, category: "채용" },
+  { id: 3, category: "이벤트" },
 ];
