@@ -96,33 +96,41 @@ const MenuWrap = styled.div`
     margin-left: 0;
     width: 450px;
   }
+  @media only screen and (max-width: 767px) {
+    width: 150px;
+  }
+`;
+
+const Menustyle = css`
+  margin: auto 0;
+  padding: 0 9px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+  cursor: pointer;
 `;
 
 const Menu = styled.a`
-  margin: auto 0;
-  padding: 0 10px;
-  height: 50px;
-  line-height: 50px;
-  font-size: 13px;
-  cursor: pointer;
+  ${Menustyle}
   :hover {
     border-bottom: 2px solid lightgray;
   }
   @media only screen and (max-width: 990px) {
+    font-size: 13px;
     :hover {
       border-bottom: none;
     }
   }
-  @media only screen and (min-width: 767px) {
+  @media only screen and (max-width: 767px) {
     display: none;
   }
 `;
 
 const Menu2 = styled.a`
-  @media (min-width: 767px) {
+  ${Menustyle}
+  @media only screen and (min-width: 767px) {
     display: none;
   }
-  background-color: red;
 `;
 
 const AsideMenuWrap = styled.div`
