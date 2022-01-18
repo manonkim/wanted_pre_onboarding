@@ -7,7 +7,7 @@ export default function Slide({ src, alt }) {
 
 const IMG = styled.img`
   margin: 0 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 300px;
   width: 100%;
 `;

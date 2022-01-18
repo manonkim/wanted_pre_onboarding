@@ -1,21 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
+import Slide from "./Slide";
 
 export default function Carousel() {
-  const TotalSlides = 8;
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const TotalSlides = 9;
+  const [currentSlide, setCurrentSlide] = useState(1);
   const slideRef = useRef(null);
 
   const NextSlide = () => {
     if (currentSlide >= TotalSlides) {
-      setCurrentSlide(0);
+      setCurrentSlide(1);
     } else {
       setCurrentSlide(currentSlide + 1);
     }
   };
 
   const PrevSlide = () => {
-    if (currentSlide === 0) {
+    if (currentSlide === 1) {
       setCurrentSlide(TotalSlides);
     } else {
       setCurrentSlide(currentSlide - 1);
@@ -31,11 +32,11 @@ export default function Carousel() {
     <Container>
       <SlideContainer ref={slideRef}>
         {ImgData.map((item) => {
-          return <IMG src={item.src} alt={item.alt} />;
+          return <Slide src={item.src} alt={item.alt} />;
         })}
       </SlideContainer>
-      <BtnL onClick={PrevSlide}>왼</BtnL>
-      <BtnR onClick={NextSlide}>오</BtnR>
+      <BtnL onClick={PrevSlide}>&#60;</BtnL>
+      <BtnR onClick={NextSlide}>&#62;</BtnR>
     </Container>
   );
 }
@@ -43,7 +44,7 @@ export default function Carousel() {
 const Container = styled.div`
   margin: 75px auto;
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* background-color: red; */
 `;
 
@@ -54,36 +55,32 @@ const SlideContainer = styled.div`
   /* background-color: black; */
 `;
 
-const IMG = styled.img`
-  margin: 0 10px;
-  border-radius: 10px;
-  height: 300px;
-  width: 100%;
-`;
-
 const BtnL = styled.div`
-  margin-left: 100px;
+  position: absolute;
+  top: 200px;
+  left: 120px;
   height: 60px;
   width: 30px;
+  padding-top: 17px;
+  padding-left: 9px;
   border-radius: 15px;
   background-color: #ffffff;
-  opacity: 30%;
+  color: #555555;
+  opacity: 60%;
   cursor: pointer;
-  z-index: 0;
 `;
 
-const BtnR = styled.div`
-  all: unset;
-  margin-left: 100px;
-  height: 60px;
-  width: 30px;
-  border-radius: 15px;
-  opacity: 30%;
-  cursor: pointer;
+const BtnR = styled(BtnL.withComponent("div"))`
+  left: 1285px;
   z-index: 0;
 `;
 
 const ImgData = [
+  {
+    id: 0,
+    src: "https://static.wanted.co.kr/images/banners/1486/fba2df30.jpg",
+    alt: "성과를 내는 마케팅",
+  },
   {
     id: 1,
     src: "https://static.wanted.co.kr/images/banners/1473/41f7b36e.jpg",
@@ -101,7 +98,7 @@ const ImgData = [
   },
   {
     id: 4,
-    src: "https://static.wanted.co.kr/images/banners/1489/312a0c29.jpg",
+    src: "https://static.wanted.co.kr/images/banners/1490/0b775035.jpg",
     alt: "마케팅 주니어를 찾습니다",
   },
   {
@@ -129,5 +126,10 @@ const ImgData = [
     id: 9,
     src: "https://static.wanted.co.kr/images/banners/1486/fba2df30.jpg",
     alt: "성과를 내는 마케팅",
+  },
+  {
+    id: 10,
+    src: "https://static.wanted.co.kr/images/banners/1473/41f7b36e.jpg",
+    alt: "개발자 되고싶은 분들!?",
   },
 ];
