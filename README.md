@@ -1,6 +1,6 @@
 ## Wanted_Free/Pre_Onboarding_Course
 
-원티드 프리온보딩 코스
+
 
 ### 구현 사항
 
