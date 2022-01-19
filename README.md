@@ -21,3 +21,7 @@
 `배포`
 
 - [ ] netlify
+
+
+https://user-images.githubusercontent.com/85450378/150098667-f9c0285a-2762-44a8-8004-564424d9cba3.MOV
+
