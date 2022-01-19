@@ -2,7 +2,7 @@
 
 원티드 프리온보딩 코스
 
-### `구현 사항`
+### 구현 사항
 
 `GNB(Global Navigation Bar)`
 
