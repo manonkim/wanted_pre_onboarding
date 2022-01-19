@@ -16,7 +16,7 @@
 `Responsive Web`
 
 - [x] GNB
-- [x] Carousel
+- [ ] Carousel
 
 `배포`
 
