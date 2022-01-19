@@ -3,26 +3,22 @@ import styled, { css } from "styled-components";
 import Slide from "./Slide";
 
 export default function Carousel() {
-  const TotalSlides = 9;
-  const [currentSlide, setCurrentSlide] = useState(7);
-  const [animationOnGoing, setAnimationOnGoing] = useState(false);
+  const TotalSlides = 10;
+  const [currentSlide, setCurrentSlide] = useState(2);
   const slideRef = useRef(null);
   const Refstyle = slideRef.current;
 
   const NextSlide = () => {
-    if (animationOnGoing) return;
     if (currentSlide >= TotalSlides) {
       Refstyle.style.transition = `none`;
-      Refstyle.style.transform = `translateX(0)`;
-      setCurrentSlide(1);
+      Refstyle.style.transform = `translateX(-100%)`;
+      setCurrentSlide(2);
     } else {
       setCurrentSlide(currentSlide + 1);
     }
-    setAnimationOnGoing(true);
   };
 
   const PrevSlide = () => {
-    if (animationOnGoing) return;
     if (currentSlide === 1) {
       Refstyle.style.transition = `none`;
       Refstyle.style.transform = `translateX(-1000%)`;
@@ -30,14 +26,30 @@ export default function Carousel() {
     } else {
       setCurrentSlide(currentSlide - 1);
     }
-    setAnimationOnGoing(true);
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setAnimationOnGoing(false);
-    }, 1300);
-  }, [animationOnGoing]);
+  // const AutoPlay = () => {
+  //   setInterval(() => {
+  //     NextSlide();
+  //   }, 5000);
+  // };
+  // AutoPlay();
+
+  // const ResizeWindow = () => {
+  //   const [windowSize, setWindowSize] = useState({ width: window.innerWidth });
+  //   const handleResize = () => {
+  //     setWindowSize({ width: window.innerWidth });
+  //   };
+
+  //   useEffect(() => {
+  //     window.addEventListener("resize", handleResize);
+  //     return () => {
+  //       //cleanup
+  //       window.removeEventListener("resize", handleResize);
+  //     };
+  //   }, []);
+  // };
+  // ResizeWindow();
 
   useEffect(() => {
     slideRef.current.style.transition = "transform .3s ease-in-out";
@@ -72,9 +84,8 @@ const Container = styled.div`
   }
   @media only screen and (max-width: 990px) {
     margin-top: 60px;
-    height: 183px;
-    overflow: hidden;
   }
+
   width: 1080px;
   height: 300px;
   margin: 0 auto;
@@ -116,58 +127,68 @@ const BtnR = styled.div`
 const ImgData = [
   {
     id: 0,
+    src: "https://static.wanted.co.kr/images/banners/1488/baa54448.jpg",
+    alt: "UX 디자이너의 커리어 설계",
+  },
+  {
+    id: 1,
     src: "https://static.wanted.co.kr/images/banners/1486/fba2df30.jpg",
     alt: "성과를 내는 마케팅",
   },
   {
-    id: 1,
+    id: 2,
     src: "https://static.wanted.co.kr/images/banners/1473/41f7b36e.jpg",
     alt: "개발자 되고싶은 분들!?",
   },
   {
-    id: 2,
+    id: 3,
     src: "https://static.wanted.co.kr/images/banners/1484/b2853456.jpg",
     alt: "성장하는 개발자가 되려면?",
   },
   {
-    id: 3,
+    id: 4,
     src: "https://static.wanted.co.kr/images/banners/1489/312a0c29.jpg",
     alt: "2022년 달라지는 노동법령",
   },
   {
-    id: 4,
+    id: 5,
     src: "https://static.wanted.co.kr/images/banners/1490/0b775035.jpg",
     alt: "마케팅 주니어를 찾습니다",
   },
   {
-    id: 5,
+    id: 6,
     src: "https://static.wanted.co.kr/images/banners/1487/0d36f0b5.jpg",
     alt: "포트폴리오를 부탁해!",
   },
   {
-    id: 6,
+    id: 7,
     src: "https://static.wanted.co.kr/images/banners/1460/619f3af7.jpg",
     alt: "개발자 성장 비결 공개!",
   },
   {
-    id: 7,
+    id: 8,
 
     src: "https://static.wanted.co.kr/images/banners/1468/3df61cbc.jpg",
     alt: "해, 커리어 EP 02 공개",
   },
   {
-    id: 8,
+    id: 9,
     src: "https://static.wanted.co.kr/images/banners/1488/baa54448.jpg",
     alt: "UX 디자이너의 커리어 설계",
   },
   {
-    id: 9,
+    id: 10,
     src: "https://static.wanted.co.kr/images/banners/1486/fba2df30.jpg",
     alt: "성과를 내는 마케팅",
   },
   {
-    id: 10,
+    id: 11,
     src: "https://static.wanted.co.kr/images/banners/1473/41f7b36e.jpg",
     alt: "개발자 되고싶은 분들!?",
+  },
+  {
+    id: 12,
+    src: "https://static.wanted.co.kr/images/banners/1484/b2853456.jpg",
+    alt: "성장하는 개발자가 되려면?",
   },
 ];
