@@ -28,28 +28,12 @@ export default function Carousel() {
     }
   };
 
-  // const AutoPlay = () => {
-  //   setInterval(() => {
-  //     NextSlide();
-  //   }, 5000);
-  // };
-  // AutoPlay();
-
-  // const ResizeWindow = () => {
-  //   const [windowSize, setWindowSize] = useState({ width: window.innerWidth });
-  //   const handleResize = () => {
-  //     setWindowSize({ width: window.innerWidth });
-  //   };
-
-  //   useEffect(() => {
-  //     window.addEventListener("resize", handleResize);
-  //     return () => {
-  //       //cleanup
-  //       window.removeEventListener("resize", handleResize);
-  //     };
-  //   }, []);
-  // };
-  // ResizeWindow();
+  const AutoPlay = () => {
+    setInterval(() => {
+      NextSlide();
+    }, 5000);
+  };
+  AutoPlay();
 
   useEffect(() => {
     slideRef.current.style.transition = "transform .3s ease-in-out";
